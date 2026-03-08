@@ -12,7 +12,7 @@
 #
 #- name: Get secrets for this app
 #  ansible.builtin.set_fact:
-#    component_secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'roboshop-{{ env }}/data/{{ component_name }} token={{ vault_token }} url=http://vault-internal.devopsbymanju.shop :8200') }}"
+#    component_secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'roboshop-{{ env }}/data/{{ component_name }} token={{ vault_token }} url=http://vault-internal.devopsmanju.shop :8200') }}"
 #
 #- name: Copy SystemD service file
 #  ansible.builtin.template:

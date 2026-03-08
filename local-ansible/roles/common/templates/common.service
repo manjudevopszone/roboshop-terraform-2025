@@ -6,7 +6,7 @@ User={{ service_username }}
 WorkingDirectory=/app
 
 {% for item in secrets %}
-Environment={{ item }}="{{ lookup('community.hashi_vault.hashi_vault','secret=roboshop-' ~ env ~ '-secrets/data/' ~ component_name ~ ':' ~ item ~ ' token=' ~ vault_token ~ ' url=http://vault.devopsbymanju.shop:8200') }}"
+Environment={{ item }}="{{ lookup('community.hashi_vault.hashi_vault','secret=roboshop-' ~ env ~ '-secrets/data/' ~ component_name ~ ':' ~ item ~ ' token=' ~ vault_token ~ ' url=http://vault.devopsmanju.shop:8200') }}"
 {% endfor %}
 
 ExecStart={{ execstart_command }}

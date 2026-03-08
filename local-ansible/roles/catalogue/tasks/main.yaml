@@ -14,7 +14,7 @@
     state: installed
 
 - name: Load Master data schema
-  ansible.builtin.shell: mongosh --host mongodb-{{ env }}.devopsbymanju.shop </app/db/master-data.js
+  ansible.builtin.shell: mongosh --host mongodb-{{ env }}.devopsmanju.shop </app/db/master-data.js
 
 
 
