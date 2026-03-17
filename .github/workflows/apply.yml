@@ -1,14 +1,31 @@
 name: Terraform Apply
 on: [workflow_dispatch]
 jobs:
-  Terraform-init:
+#  Terraform-Init:
+#    runs-on: self-hosted
+#    steps:
+#      - name: Check out repository code
+#        uses: actions/checkout@v5
+#      - name: Terraform init
+#        run: |
+#          terraform init -backend-config=env-dev/state.tfvars
+#
+#  Terraform-Plan:
+#    runs-on: self-hosted
+#    steps:
+#      - name: Check out repository code
+#        uses: actions/checkout@v5
+#      - name: Terraform init
+#        run: |
+#          terraform init -backend-config=env-dev/state.tfvars
+
+  Terraform-Apply:
     runs-on: self-hosted
     steps:
       - name: Check out repository code
         uses: actions/checkout@v5
-      - name: List files in the repository and run terraform init command
+      - name: Terraform init
         run: |
-          ls ${{ github.workspace }}
           terraform init -backend-config=env-dev/state.tfvars
-
+          terraform apply -var-file=env-dev/main.tfvars
 
