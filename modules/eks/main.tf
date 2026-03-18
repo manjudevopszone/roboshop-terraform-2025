@@ -56,5 +56,12 @@ resource "null_resource" "kubeconfig" {
 }
 
 
+resource "null_resource" "metricserver" {
+  depends_on = [aws_eks_cluster.main]
+
+  provisioner "local-exec" {
+    command = "kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.8.1/components.yaml"
+  }
+}
 
 
