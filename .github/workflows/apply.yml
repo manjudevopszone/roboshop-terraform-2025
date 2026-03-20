@@ -31,3 +31,18 @@ jobs:
         env:
           vault_token: ${{ secrets.vault_token }}
 
+
+  Helm-Install-Applications:
+    runs-on: self-hosted
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v5
+        with:
+          repository: manjudevopszone/roboshop-helm
+          Path: helm
+      - name: Terraform init
+        run: |
+          for chart in frontend catalogue user shipping payment cart ; do make env=dev component=$$chart;done
+        env:
+          vault_token: ${{ secrets.vault_token }}
+
