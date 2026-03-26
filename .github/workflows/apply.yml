@@ -27,24 +27,25 @@ jobs:
       - name: Terraform init
         run: |
           export PATH=/home/ec2-user/.local/bin:/home/ec2-user/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin 
-          terraform init -backend-config=env-dev/state.tfvars
-          terraform apply -var-file=env-dev/main.tfvars -var vault_token=${vault_token} -auto-approve
+#          terraform init -backend-config=env-dev/state.tfvars
+#          terraform apply -var-file=env-dev/main.tfvars -var vault_token=${vault_token} -auto-approve
+           terraform plan -var-file=env-dev/main.tfvars -var vault_token=${vault_token} | tail -n6 | head n1
         env:
           vault_token: ${{ secrets.vault_token }}
 
-  Helm-Install-Applications:
-    runs-on: self-hosted
-    needs: Terraform-Apply
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v5
-        with:
-          repository: manjudevopszone/roboshop-helm
-          Path: helm
-      - name: Helm install application
-        run: |
-          export PATH=/home/ec2-user/.local/bin:/home/ec2-user/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin 
-          cd helm
-          make dev
+#  Helm-Install-Applications:
+#    runs-on: self-hosted
+#    needs: Terraform-Apply
+#    steps:
+#      - name: Check out repository code
+#        uses: actions/checkout@v5
+#        with:
+#          repository: manjudevopszone/roboshop-helm
+#          Path: helm
+#      - name: Helm install application
+#        run: |
+#          export PATH=/home/ec2-user/.local/bin:/home/ec2-user/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+#          cd helm
+#          make dev
 
 
