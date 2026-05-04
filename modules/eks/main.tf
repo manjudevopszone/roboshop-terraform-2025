@@ -1,11 +1,3 @@
-terraform {
-  required_providers {
-    null = {
-      source  = "hashicorp/null"
-      version = "3.2.4"
-    }
-  }
-}
 resource "aws_eks_cluster" "main" {
 
   name = "${var.env}_eks_cluster"
